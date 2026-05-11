@@ -38,11 +38,11 @@
   .nav-chevron { transition: transform .2s; flex-shrink: 0; }
   .nav-item:hover .nav-chevron { transform: rotate(180deg); }
 
-  /* dropdown — position fixed to avoid overflow */
+  /* dropdown — position fixed, padding-top bridges the gap */
   .dropdown {
-    display: none; position: fixed; top: 64px;
+    display: none; position: fixed; top: 56px;
     background: var(--white); border: 1px solid var(--gray-2);
-    border-radius: 12px; padding: 16px;
+    border-radius: 12px; padding: 24px 16px 16px;
     box-shadow: 0 12px 32px rgba(0,0,0,.1);
     z-index: 300;
   }
@@ -291,23 +291,23 @@
       <rect x="76" y="167" width="140" height="7" rx="3" fill="#F3F4F6"/>
       <rect x="76" y="180" width="160" height="7" rx="3" fill="#F3F4F6"/>
       <!-- score panel -->
-      <rect x="295" y="54" width="158" height="152" rx="10" fill="#0F1117"/>
-      <text x="374" y="78" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" fill="rgba(255,255,255,0.45)">AI Readiness Score</text>
-      <text x="374" y="118" text-anchor="middle" font-family="Roboto,sans-serif" font-size="52" font-weight="700" fill="#eb7d68">62</text>
+      <rect x="295" y="54" width="158" height="152" rx="10" fill="#FDF0EE"/>
+      <text x="374" y="70" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" fill="rgba(0,0,0,0.35)">AI Readiness Score</text>
+      <text x="374" y="122" text-anchor="middle" font-family="Roboto,sans-serif" font-size="52" font-weight="700" fill="#eb7d68">62</text>
       <!-- bar -->
-      <rect x="312" y="128" width="124" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>
+      <rect x="312" y="128" width="124" height="5" rx="2.5" fill="rgba(235,125,104,0.15)"/>
       <rect x="312" y="128" width="77" height="5" rx="2.5" fill="#eb7d68"/>
       <!-- divider -->
-      <rect x="305" y="142" width="142" height="1" fill="rgba(255,255,255,0.07)"/>
+      <rect x="305" y="142" width="142" height="1" fill="rgba(0,0,0,0.07)"/>
       <!-- rows -->
-      <text x="312" y="157" font-family="Roboto,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.45)">Agent content</text>
-      <text x="446" y="157" text-anchor="end" font-family="Roboto,sans-serif" font-size="8.5" font-weight="600" fill="#6EE7B7">20/20</text>
-      <text x="312" y="170" font-family="Roboto,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.45)">llms.txt</text>
-      <text x="446" y="170" text-anchor="end" font-family="Roboto,sans-serif" font-size="8.5" font-weight="600" fill="#FC8181">0/15</text>
-      <text x="312" y="183" font-family="Roboto,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.45)">AI bot access</text>
-      <text x="446" y="183" text-anchor="end" font-family="Roboto,sans-serif" font-size="8.5" font-weight="600" fill="#FC8181">0/15</text>
-      <text x="312" y="196" font-family="Roboto,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.45)">Performance</text>
-      <text x="446" y="196" text-anchor="end" font-family="Roboto,sans-serif" font-size="8.5" font-weight="600" fill="#FBBF24">5/10</text>
+      <text x="312" y="157" font-family="Roboto,sans-serif" font-size="8.5" fill="rgba(0,0,0,0.4)">Agent content</text>
+      <text x="446" y="157" text-anchor="end" font-family="Roboto,sans-serif" font-size="8.5" font-weight="700" fill="#16A34A">20/20</text>
+      <text x="312" y="170" font-family="Roboto,sans-serif" font-size="8.5" fill="rgba(0,0,0,0.4)">llms.txt</text>
+      <text x="446" y="170" text-anchor="end" font-family="Roboto,sans-serif" font-size="8.5" font-weight="700" fill="#DC2626">0/15</text>
+      <text x="312" y="183" font-family="Roboto,sans-serif" font-size="8.5" fill="rgba(0,0,0,0.4)">AI bot access</text>
+      <text x="446" y="183" text-anchor="end" font-family="Roboto,sans-serif" font-size="8.5" font-weight="700" fill="#DC2626">0/15</text>
+      <text x="312" y="196" font-family="Roboto,sans-serif" font-size="8.5" fill="rgba(0,0,0,0.4)">Performance</text>
+      <text x="446" y="196" text-anchor="end" font-family="Roboto,sans-serif" font-size="8.5" font-weight="700" fill="#CA8A04">5/10</text>
 
       <!-- scanning beam -->
       <rect x="50" y="46" width="420" height="2.5" rx="1.5" fill="url(#beam)" opacity="0.6">
