@@ -8,150 +8,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --orange: #eb7d68;
-    --orange-light: #f0907d;
-    --orange-pale: #fdf0ee;
-    --dark: #0F1117;
-    --dark-2: #1A1D26;
-    --gray-1: #6B7280;
-    --gray-2: #D1D5DB;
-    --gray-3: #F3F4F6;
-    --white: #FFFFFF;
-    --green: #16A34A;
-    --red: #DC2626;
-    --yellow: #CA8A04;
-    --radius: 12px;
-    --radius-lg: 20px;
+    --orange: #eb7d68; --orange-light: #f0907d; --orange-pale: #fdf0ee;
+    --dark: #0F1117; --gray-1: #6B7280; --gray-2: #D1D5DB; --gray-3: #F3F4F6;
+    --white: #FFFFFF; --green: #16A34A; --red: #DC2626; --yellow: #CA8A04;
+    --radius: 12px; --radius-lg: 20px;
   }
-
-  body {
-    font-family: 'Roboto', sans-serif;
-    background: var(--white);
-    color: var(--dark);
-    min-height: 100vh;
-  }
+  body { font-family: 'Roboto', sans-serif; background: var(--white); color: var(--dark); min-height: 100vh; }
 
   /* NAV */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 48px;
-    border-bottom: 1px solid var(--gray-2);
-    background: var(--white);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-logo img { height: 32px; width: auto; }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a { font-size: 14px; font-weight: 500; color: var(--dark); text-decoration: none; transition: color .2s; }
-  .nav-links a:hover { color: var(--orange); }
-  .nav-actions { display: flex; gap: 12px; align-items: center; }
-  .btn-ghost { padding: 8px 18px; border: 1.5px solid var(--gray-2); border-radius: 8px; background: none; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: var(--dark); cursor: pointer; text-decoration: none; transition: border-color .2s; }
-  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
-  .btn-primary { padding: 8px 20px; background: var(--orange); border: none; border-radius: 8px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 600; color: var(--white); cursor: pointer; text-decoration: none; transition: background .2s, transform .1s; }
-  .btn-primary:hover { background: var(--orange-light); }
-  .btn-primary:active { transform: scale(.98); }
-
-  /* SHARE BUTTON */
-  .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--gray-3); border: 1.5px solid var(--gray-2); border-radius: 8px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: var(--dark); cursor: pointer; transition: all .2s; }
-  .share-btn:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-pale); }
-  .share-btn.copied { background: rgba(22,163,74,.1); border-color: rgba(22,163,74,.3); color: var(--green); }
-  .share-row { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; border-bottom: 1px solid var(--gray-2); background: var(--white); position: sticky; top: 0; z-index: 200; }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 34px; width: auto; }
+  .nav-menu { display: flex; gap: 2px; align-items: center; }
+  .nav-item { position: relative; }
+  .nav-item > a, .nav-item > span { display: flex; align-items: center; gap: 4px; padding: 8px 12px; font-size: 14px; font-weight: 500; color: #1a1a1a; text-decoration: none; cursor: pointer; border-radius: 6px; transition: background .15s, color .15s; white-space: nowrap; user-select: none; }
+  .nav-item > a:hover, .nav-item > span:hover { background: var(--gray-3); color: var(--orange); }
+  .nav-chevron { transition: transform .2s; }
+  .nav-item:hover .nav-chevron { transform: rotate(180deg); }
+  .dropdown { display: none; position: absolute; top: calc(100% + 6px); left: 0; background: var(--white); border: 1px solid var(--gray-2); border-radius: 10px; padding: 6px; min-width: 210px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+  .nav-item:hover .dropdown { display: block; }
+  .dropdown a { display: block; padding: 9px 12px; font-size: 13px; font-weight: 500; color: #1a1a1a; text-decoration: none; border-radius: 6px; transition: background .15s, color .15s; }
+  .dropdown a:hover { background: var(--orange-pale); color: var(--orange); }
+  .nav-actions { display: flex; gap: 10px; align-items: center; }
+  .btn-login { font-size: 14px; font-weight: 500; color: #1a1a1a; text-decoration: none; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--gray-2); transition: background .15s; }
+  .btn-login:hover { background: var(--gray-3); }
+  .btn-try { padding: 8px 18px; background: var(--orange); border: none; border-radius: 8px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 600; color: var(--white); cursor: pointer; text-decoration: none; transition: background .2s; white-space: nowrap; }
+  .btn-try:hover { background: var(--orange-light); }
 
   /* HERO */
-  .hero {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 72px 24px 48px;
-    text-align: center;
-  }
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--orange-pale);
-    color: var(--orange);
-    border-radius: 999px;
-    padding: 5px 14px;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 24px;
-  }
+  .hero { max-width: 760px; margin: 0 auto; padding: 64px 24px 40px; text-align: center; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; background: var(--orange-pale); color: var(--orange); border-radius: 999px; padding: 5px 14px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
   .pill::before { content: '⚡'; }
-  h1 {
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -1.5px;
-    margin-bottom: 18px;
-    color: var(--dark);
-  }
+  h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 18px; }
   h1 em { color: var(--orange); font-style: normal; }
-  .subtitle {
-    font-size: 17px;
-    color: var(--gray-1);
-    line-height: 1.6;
-    max-width: 540px;
-    margin: 0 auto 40px;
-  }
-
-  /* SEARCH BOX */
-  .search-wrap {
-    display: flex;
-    gap: 0;
-    max-width: 580px;
-    margin: 0 auto;
-    background: var(--white);
-    border: 2px solid var(--gray-2);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .search-wrap:focus-within {
-    border-color: var(--orange);
-    box-shadow: 0 0 0 4px rgba(232,82,26,.1);
-  }
-  #domain-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 16px 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 15px;
-    color: var(--dark);
-    background: transparent;
-  }
+  .subtitle { font-size: 17px; color: var(--gray-1); line-height: 1.6; max-width: 540px; margin: 0 auto 40px; }
+  .search-wrap { display: flex; max-width: 580px; margin: 0 auto; background: var(--white); border: 2px solid var(--gray-2); border-radius: 14px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+  .search-wrap:focus-within { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(235,125,104,.1); }
+  #domain-input { flex: 1; border: none; outline: none; padding: 16px 20px; font-family: 'JetBrains Mono', monospace; font-size: 15px; color: var(--dark); background: transparent; }
   #domain-input::placeholder { color: var(--gray-2); }
-  #run-btn {
-    padding: 14px 28px;
-    background: var(--orange);
-    border: none;
-    font-family: 'Sora', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--white);
-    cursor: pointer;
-    transition: background .2s;
-    white-space: nowrap;
-  }
+  #run-btn { padding: 14px 28px; background: var(--orange); border: none; font-family: 'Roboto', sans-serif; font-size: 15px; font-weight: 600; color: var(--white); cursor: pointer; transition: background .2s; white-space: nowrap; }
   #run-btn:hover { background: var(--orange-light); }
   #run-btn:disabled { background: var(--gray-2); cursor: not-allowed; }
   .error-msg { color: var(--red); font-size: 13px; margin-top: 10px; display: none; }
+  .hero-illustration { margin-top: 52px; display: flex; justify-content: center; }
 
   /* LOADING */
-  #loading {
-    display: none;
-    max-width: 580px;
-    margin: 32px auto 0;
-    padding: 28px;
-    background: var(--gray-3);
-    border-radius: var(--radius-lg);
-  }
+  #loading { display: none; max-width: 580px; margin: 32px auto 0; padding: 28px; background: var(--gray-3); border-radius: var(--radius-lg); }
   .loading-steps { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .loading-step { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--gray-1); }
   .step-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
@@ -160,33 +63,18 @@
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* RESULTS */
-  #results {
-    display: none;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
+  #results { display: none; max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+  .share-row { display: flex; justify-content: space-between; align-items: center; padding: 0 0 24px; border-bottom: 1.5px solid var(--gray-2); flex-wrap: wrap; gap: 12px; }
+  .share-domain { font-size: 13px; color: var(--gray-1); }
+  .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; background: var(--white); border: 1.5px solid var(--gray-2); border-radius: 8px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: var(--dark); cursor: pointer; transition: all .2s; }
+  .share-btn:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-pale); }
+  .share-btn.copied { background: rgba(22,163,74,.08); border-color: rgba(22,163,74,.3); color: var(--green); }
 
   /* SCORE CARD */
-  .score-card {
-    background: var(--dark);
-    border-radius: var(--radius-lg);
-    padding: 40px;
-    margin-bottom: 32px;
-    color: var(--white);
-    position: relative;
-    overflow: hidden;
-  }
-  .score-card::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 220px; height: 220px;
-    background: radial-gradient(circle, rgba(232,82,26,.3) 0%, transparent 70%);
-    pointer-events: none;
-  }
+  .score-card { background: var(--dark); border-radius: var(--radius-lg); padding: 40px; margin: 32px 0; color: var(--white); position: relative; overflow: hidden; }
+  .score-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(235,125,104,.25) 0%, transparent 70%); pointer-events: none; }
   .score-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
-  .score-domain { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+  .score-domain-label { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: rgba(255,255,255,.5); margin-bottom: 8px; }
   .score-title { font-size: 22px; font-weight: 700; }
   .score-big { text-align: right; }
   .score-number { font-size: 72px; font-weight: 700; line-height: 1; color: var(--orange); }
@@ -196,29 +84,21 @@
   .label-fair { background: rgba(202,138,4,.2); color: #FBBF24; }
   .label-good { background: rgba(22,163,74,.2); color: #6EE7B7; }
   .label-great { background: rgba(22,163,74,.3); color: #34D399; }
-
-  /* SCORE BAR */
   .score-bar-wrap { margin-bottom: 32px; }
   .score-bar-bg { height: 8px; background: rgba(255,255,255,.1); border-radius: 999px; overflow: hidden; }
-  .score-bar-fill { height: 100%; background: linear-gradient(90deg, #E8521A, #FF9A5C); border-radius: 999px; width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+  .score-bar-fill { height: 100%; background: linear-gradient(90deg, #eb7d68, #f5b8ad); border-radius: 999px; width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
   .score-bar-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 12px; color: rgba(255,255,255,.3); }
-
-  /* BREAKDOWN TABLE */
   .breakdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .breakdown-item { background: rgba(255,255,255,.05); border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
   .breakdown-name { font-size: 14px; font-weight: 500; }
   .breakdown-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 2px; }
   .breakdown-score { font-size: 18px; font-weight: 700; }
-  .score-green { color: #6EE7B7; }
-  .score-red { color: #FC8181; }
-  .score-yellow { color: #FBBF24; }
+  .score-green { color: #6EE7B7; } .score-red { color: #FC8181; } .score-yellow { color: #FBBF24; }
 
   /* SECTION */
   .section { margin-bottom: 32px; }
   .section-title { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
   .section-desc { font-size: 14px; color: var(--gray-1); margin-bottom: 20px; }
-
-  /* CHECK CARDS */
   .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .check-card { border: 1.5px solid var(--gray-2); border-radius: var(--radius); padding: 24px; }
   .check-card.pass { border-color: rgba(22,163,74,.3); background: rgba(22,163,74,.03); }
@@ -232,33 +112,21 @@
   .badge-warn { background: rgba(202,138,4,.1); color: var(--yellow); }
   .check-value { font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 700; margin-bottom: 4px; }
   .check-sub { font-size: 13px; color: var(--gray-1); line-height: 1.5; }
-
-  /* BOT GRID */
   .bot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
   .bot-card { border: 1.5px solid var(--gray-2); border-radius: var(--radius); padding: 16px; }
   .bot-name { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
   .bot-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 12px; }
   .bot-row-label { color: var(--gray-1); }
-  .icon-check { color: var(--green); }
-  .icon-cross { color: var(--red); }
+  .icon-check { color: var(--green); } .icon-cross { color: var(--red); }
+  .fix-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .fix-item { display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: var(--gray-3); border-radius: var(--radius); }
+  .fix-num { width: 24px; height: 24px; background: var(--orange); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .fix-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .fix-content p { font-size: 13px; color: var(--gray-1); line-height: 1.5; }
 
   /* CTA */
-  .cta-block {
-    background: linear-gradient(135deg, var(--dark) 0%, #1e1528 100%);
-    border-radius: var(--radius-lg);
-    padding: 52px 48px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .cta-block::before {
-    content: '';
-    position: absolute;
-    bottom: -80px; left: 50%;
-    transform: translateX(-50%);
-    width: 400px; height: 200px;
-    background: radial-gradient(ellipse, rgba(232,82,26,.25) 0%, transparent 70%);
-  }
+  .cta-block { background: linear-gradient(135deg, var(--dark) 0%, #1e1528 100%); border-radius: var(--radius-lg); padding: 52px 48px; text-align: center; position: relative; overflow: hidden; }
+  .cta-block::before { content: ''; position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%); width: 400px; height: 200px; background: radial-gradient(ellipse, rgba(235,125,104,.2) 0%, transparent 70%); }
   .cta-block h2 { font-size: 30px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
   .cta-block p { font-size: 16px; color: rgba(255,255,255,.6); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
   .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -267,21 +135,14 @@
   .btn-cta-ghost { padding: 14px 32px; background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.2); border-radius: 10px; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 600; color: var(--white); cursor: pointer; text-decoration: none; transition: all .2s; display: inline-block; }
   .btn-cta-ghost:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.4); }
 
-  /* FIX HINTS */
-  .fix-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
-  .fix-item { display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: var(--gray-3); border-radius: var(--radius); }
-  .fix-num { width: 24px; height: 24px; background: var(--orange); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-  .fix-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-  .fix-content p { font-size: 13px; color: var(--gray-1); line-height: 1.5; }
-
-  @media (max-width: 640px) {
-    nav { padding: 14px 20px; }
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-menu { display: none; }
     .hero { padding: 48px 20px 32px; }
     .check-grid, .breakdown-grid { grid-template-columns: 1fr; }
     .score-card { padding: 24px; }
     .score-number { font-size: 52px; }
     .cta-block { padding: 36px 24px; }
-    .cta-block h2 { font-size: 22px; }
   }
 </style>
 </head>
@@ -291,17 +152,34 @@
   <a href="https://signum.ai" class="nav-logo">
     <img src="https://signum.ai/wp-content/uploads/2024/10/logo-3.svg" alt="Signum.AI">
   </a>
-  <div class="nav-links">
-    <a href="https://signum.ai">Home</a>
-    <a href="https://signum.ai/capabilities">Capabilities</a>
-    <a href="https://signum.ai/pricing">Pricing</a>
-    <a href="https://signum.ai/playbooks">Playbooks</a>
-    <a href="https://signum.ai/customers">Customers</a>
-    <a href="https://signum.ai/resources">Resources</a>
+  <div class="nav-menu">
+    <div class="nav-item"><a href="https://signum.ai">Home</a></div>
+    <div class="nav-item">
+      <span>Capabilities <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="dropdown">
+        <a href="https://signum.ai/visibility-in-chatgpt-like-tools/">Track &amp; Measure</a>
+        <a href="https://signum.ai/map-competitors/">Map Competitors</a>
+        <a href="https://signum.ai/optimize-promote/">Optimize &amp; Promote</a>
+      </div>
+    </div>
+    <div class="nav-item"><a href="https://signum.ai/pricing/">Pricing</a></div>
+    <div class="nav-item"><a href="https://signum.ai/playbooks/">Playbooks</a></div>
+    <div class="nav-item"><a href="https://signum.ai/customers/">Customers</a></div>
+    <div class="nav-item">
+      <span>Resources <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="dropdown">
+        <a href="https://signum.ai/use-cases/">Use Cases</a>
+        <a href="https://signum.ai/about/">About Us</a>
+        <a href="https://signum.ai/blog/">Blog</a>
+        <a href="https://signum.ai/contact-us/">Contact</a>
+        <a href="https://signum.ai/partners/">Partners</a>
+        <a href="https://signum.ai/viral-digest/">Content Ideas Newsletter</a>
+      </div>
+    </div>
   </div>
   <div class="nav-actions">
-    <a href="https://my.signum.ai" class="btn-ghost">Login</a>
-    <a href="https://my.signum.ai/dashboard" class="btn-primary">Try it free →</a>
+    <a href="https://my.signum.ai" class="btn-login">Login</a>
+    <a href="https://my.signum.ai/dashboard" class="btn-try">Try it free →</a>
   </div>
 </nav>
 
@@ -309,18 +187,52 @@
   <div class="pill">Free tool</div>
   <h1>Is Your Website <em>Visible</em><br>to AI Agents?</h1>
   <p class="subtitle">Check if ChatGPT, Claude, Perplexity and other AI systems can find, read and cite your content. Get your AI readiness score in seconds.</p>
-
   <div class="search-wrap">
     <input id="domain-input" type="text" placeholder="yourdomain.com" autocomplete="off" spellcheck="false">
     <button id="run-btn" onclick="runCheck()">Run check →</button>
   </div>
   <div class="error-msg" id="error-msg"></div>
+  <div class="hero-illustration">
+    <svg width="500" height="240" viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="250" cy="120" r="34" fill="#fdf0ee" stroke="#eb7d68" stroke-width="2"/>
+      <text x="250" y="116" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" font-weight="700" fill="#eb7d68">AI</text>
+      <text x="250" y="130" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" fill="#eb7d68">CHECKER</text>
+      <circle cx="250" cy="120" r="52" stroke="#eb7d68" stroke-width="1" fill="none" opacity="0.25"><animate attributeName="r" values="52;85;52" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.25;0;0.25" dur="3s" repeatCount="indefinite"/></circle>
+      <!-- ChatGPT -->
+      <circle cx="95" cy="62" r="26" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+      <text x="95" y="59" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" font-weight="600" fill="#16a34a">Chat</text>
+      <text x="95" y="71" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" font-weight="600" fill="#16a34a">GPT</text>
+      <line x1="119" y1="76" x2="220" y2="111" stroke="#d1fae5" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <!-- Claude -->
+      <circle cx="85" cy="182" r="26" fill="#fdf0ee" stroke="#eb7d68" stroke-width="1.5"/>
+      <text x="85" y="185" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" font-weight="600" fill="#eb7d68">Claude</text>
+      <line x1="110" y1="169" x2="220" y2="132" stroke="#fde8e4" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <!-- Perplexity -->
+      <circle cx="250" cy="26" r="26" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1.5"/>
+      <text x="250" y="23" text-anchor="middle" font-family="Roboto,sans-serif" font-size="8" font-weight="600" fill="#0284c7">Perplexity</text>
+      <text x="250" y="34" text-anchor="middle" font-family="Roboto,sans-serif" font-size="8" font-weight="600" fill="#0284c7"></text>
+      <line x1="250" y1="52" x2="250" y2="86" stroke="#e0f2fe" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <!-- Gemini -->
+      <circle cx="405" cy="62" r="26" fill="#fefce8" stroke="#fde047" stroke-width="1.5"/>
+      <text x="405" y="65" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" font-weight="600" fill="#ca8a04">Gemini</text>
+      <line x1="380" y1="76" x2="280" y2="111" stroke="#fef9c3" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <!-- DeepSeek -->
+      <circle cx="415" cy="182" r="26" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5"/>
+      <text x="415" y="179" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" font-weight="600" fill="#7c3aed">Deep</text>
+      <text x="415" y="191" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" font-weight="600" fill="#7c3aed">Seek</text>
+      <line x1="390" y1="169" x2="280" y2="132" stroke="#ede9fe" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <!-- Grok -->
+      <circle cx="250" cy="214" r="26" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="250" y="217" text-anchor="middle" font-family="Roboto,sans-serif" font-size="9" font-weight="600" fill="#475569">Grok</text>
+      <line x1="250" y1="188" x2="250" y2="154" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4 3"/>
+    </svg>
+  </div>
 </div>
 
 <div id="loading">
-  <ul class="loading-steps" id="loading-steps">
+  <ul class="loading-steps">
     <li class="loading-step" id="step-0"><span class="step-icon"><span class="step-spinner"></span></span> Reaching your website…</li>
-    <li class="loading-step" id="step-1"><span class="step-icon">⬜</span> Checking robots.txt & llms.txt…</li>
+    <li class="loading-step" id="step-1"><span class="step-icon">⬜</span> Checking robots.txt &amp; llms.txt…</li>
     <li class="loading-step" id="step-2"><span class="step-icon">⬜</span> Analyzing content structure…</li>
     <li class="loading-step" id="step-3"><span class="step-icon">⬜</span> Simulating AI bot access…</li>
     <li class="loading-step" id="step-4"><span class="step-icon">⬜</span> Calculating your score…</li>
@@ -332,47 +244,26 @@
 <script>
 const API_BASE = '/api/check';
 
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const d = params.get('domain');
+  if (d) { document.getElementById('domain-input').value = d; runCheck(); }
+});
+
 function getScoreLabel(s) {
   if (s >= 80) return { text: 'Great', cls: 'label-great' };
   if (s >= 60) return { text: 'Good', cls: 'label-good' };
   if (s >= 35) return { text: 'Fair', cls: 'label-fair' };
   return { text: 'Poor', cls: 'label-poor' };
 }
-
-function scoreColor(val, max) {
-  const pct = val / max;
-  if (pct >= .75) return 'score-green';
-  if (pct >= .4) return 'score-yellow';
-  return 'score-red';
-}
-
-function icon(bool) {
-  return bool
-    ? '<span class="icon-check">✓</span>'
-    : '<span class="icon-cross">✗</span>';
-}
-
-function badge(bool, trueText = 'Pass', falseText = 'Fail') {
-  return bool
-    ? `<span class="badge badge-pass">${trueText}</span>`
-    : `<span class="badge badge-fail">${falseText}</span>`;
-}
-
-function fmtMs(ms) {
-  if (!ms) return 'N/A';
-  return ms + ' ms';
-}
+function scoreColor(val, max) { const p = val/max; return p>=.75?'score-green':p>=.4?'score-yellow':'score-red'; }
+function icon(bool) { return bool?'<span class="icon-check">✓</span>':'<span class="icon-cross">✗</span>'; }
+function badge(bool, t='Pass', f='Fail') { return bool?`<span class="badge badge-pass">${t}</span>`:`<span class="badge badge-fail">${f}</span>`; }
 
 function advanceStep(i) {
   const steps = document.querySelectorAll('.loading-step');
-  if (i > 0) {
-    steps[i - 1].querySelector('.step-icon').innerHTML = '<span class="step-done">✓</span>';
-    steps[i - 1].style.color = '#374151';
-  }
-  if (steps[i]) {
-    steps[i].querySelector('.step-icon').innerHTML = '<span class="step-spinner"></span>';
-    steps[i].style.color = '#111827';
-  }
+  if (i>0) { steps[i-1].querySelector('.step-icon').innerHTML='<span class="step-done">✓</span>'; steps[i-1].style.color='#374151'; }
+  if (steps[i]) { steps[i].querySelector('.step-icon').innerHTML='<span class="step-spinner"></span>'; steps[i].style.color='#111827'; }
 }
 
 async function runCheck() {
@@ -380,48 +271,37 @@ async function runCheck() {
   const domain = input.value.trim();
   const errEl = document.getElementById('error-msg');
   errEl.style.display = 'none';
+  if (!domain) { errEl.textContent='Please enter a domain.'; errEl.style.display='block'; return; }
 
-  if (!domain) { errEl.textContent = 'Please enter a domain.'; errEl.style.display = 'block'; return; }
+  const url = new URL(window.location);
+  url.searchParams.set('domain', domain);
+  window.history.replaceState({}, '', url);
 
   const btn = document.getElementById('run-btn');
-  btn.disabled = true;
-  btn.textContent = 'Checking…';
-  document.getElementById('results').style.display = 'none';
+  btn.disabled=true; btn.textContent='Checking…';
+  document.getElementById('results').style.display='none';
 
-  // reset steps
   const steps = document.querySelectorAll('.loading-step');
-  steps.forEach((s, i) => { s.querySelector('.step-icon').innerHTML = i === 0 ? '<span class="step-spinner"></span>' : '⬜'; s.style.color = ''; });
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('loading').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  steps.forEach((s,i) => { s.querySelector('.step-icon').innerHTML=i===0?'<span class="step-spinner"></span>':'⬜'; s.style.color=''; });
+  document.getElementById('loading').style.display='block';
+  document.getElementById('loading').scrollIntoView({behavior:'smooth',block:'center'});
 
-  // simulate step progression
-  const delays = [1200, 2000, 2800, 3600];
-  delays.forEach((d, i) => setTimeout(() => advanceStep(i + 1), d));
+  [1200,2000,2800,3600].forEach((d,i) => setTimeout(()=>advanceStep(i+1),d));
 
   try {
     const res = await fetch(`${API_BASE}?domain=${encodeURIComponent(domain)}`);
     const data = await res.json();
-
-    // finish steps
-    steps.forEach(s => { s.querySelector('.step-icon').innerHTML = '<span class="step-done">✓</span>'; });
-
-    setTimeout(() => {
-      document.getElementById('loading').style.display = 'none';
-      renderResults(data, domain);
-    }, 400);
-  } catch (e) {
-    document.getElementById('loading').style.display = 'none';
-    errEl.textContent = 'Could not complete the check. Please try again.';
-    errEl.style.display = 'block';
+    steps.forEach(s => { s.querySelector('.step-icon').innerHTML='<span class="step-done">✓</span>'; });
+    setTimeout(() => { document.getElementById('loading').style.display='none'; renderResults(data,domain); }, 400);
+  } catch(e) {
+    document.getElementById('loading').style.display='none';
+    errEl.textContent='Could not complete the check. Please try again.';
+    errEl.style.display='block';
   }
-
-  btn.disabled = false;
-  btn.textContent = 'Run check →';
+  btn.disabled=false; btn.textContent='Run check →';
 }
 
-document.getElementById('domain-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') runCheck();
-});
+document.getElementById('domain-input').addEventListener('keydown', e => { if(e.key==='Enter') runCheck(); });
 
 function shareResults(domain) {
   const url = `${window.location.origin}${window.location.pathname}?domain=${encodeURIComponent(domain)}`;
@@ -429,218 +309,121 @@ function shareResults(domain) {
     const btn = document.getElementById('share-btn');
     const label = document.getElementById('share-label');
     btn.classList.add('copied');
-    label.textContent = 'Link copied!';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      label.textContent = 'Share results';
-    }, 2500);
+    label.textContent='✓ Link copied!';
+    setTimeout(() => { btn.classList.remove('copied'); label.textContent='Share results'; }, 2500);
   });
 }
 
 function renderResults(d, domain) {
   const lbl = getScoreLabel(d.score);
-  const allowedBots = d.bots ? d.bots.filter(b => b.robotsAllowed).length : 0;
+  const allowedBots = d.bots ? d.bots.filter(b=>b.robotsAllowed).length : 0;
   const totalBots = d.bots ? d.bots.length : 0;
-
-  // performance score
-  const perfScore = d.responseTime
-    ? (d.responseTime < 600 ? 10 : d.responseTime < 1200 ? 5 : 0)
-    : 0;
-
-  // token score
-  const tokenOk = d.tokenCount && d.tokenCount < 8000 * 4;
-
-  // word count score
-  const wcScore = d.wordCount > 500 ? 20 : d.wordCount > 200 ? 10 : 0;
-
-  // bot access score
-  const botScore = Math.round((allowedBots / (totalBots || 1)) * 15);
+  const perfScore = d.responseTime ? (d.responseTime<600?10:d.responseTime<1200?5:0) : 0;
+  const tokenOk = d.tokenCount && d.tokenCount < 8000*4;
+  const wcScore = d.wordCount>500?20:d.wordCount>200?10:0;
+  const botScore = Math.round((allowedBots/(totalBots||1))*15);
 
   const fixes = [];
-  if (!d.llmsExists) fixes.push({ title: 'Add llms.txt to your site', desc: 'Create /llms.txt with a structured index of your content. This lets AI agents discover all your pages efficiently.' });
-  if (!d.markdownAvailable) fixes.push({ title: 'Serve Markdown versions of pages', desc: 'AI agents consume far fewer tokens with clean Markdown vs raw HTML. Consider adding .md endpoints or a sitemap of MD content.' });
-  if (allowedBots < totalBots) fixes.push({ title: 'Open robots.txt to AI crawlers', desc: `${totalBots - allowedBots} AI bots are blocked. Update your robots.txt to allow GPTBot, ClaudeBot, PerplexityBot and others.` });
-  if (perfScore < 10) fixes.push({ title: 'Improve response time', desc: `Your site responds in ~${d.responseTime}ms. AI agents timeout quickly. Target under 600ms.` });
+  if (!d.llmsExists) fixes.push({title:'Add llms.txt to your site',desc:'Create /llms.txt with a structured index of your content. This lets AI agents discover all your pages efficiently.'});
+  if (!d.markdownAvailable) fixes.push({title:'Serve Markdown versions of pages',desc:'AI agents consume far fewer tokens with clean Markdown vs raw HTML. Consider adding .md endpoints or a sitemap of MD content.'});
+  if (allowedBots<totalBots) fixes.push({title:'Open robots.txt to AI crawlers',desc:`${totalBots-allowedBots} AI bots may be blocked. Update your robots.txt to allow GPTBot, ClaudeBot, PerplexityBot and others.`});
+  if (perfScore<10) fixes.push({title:'Improve response time',desc:`Your site responds in ~${d.responseTime}ms. AI agents timeout quickly. Target under 600ms.`});
 
   const html = `
-    <div style="margin-bottom:12px; padding: 0 0 24px; border-bottom:1.5px solid var(--gray-2);">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-        <p style="font-size:13px;color:var(--gray-1);">Results for <strong style="font-family:'JetBrains Mono',monospace">${d.domain}</strong></p>
-        <button class="share-btn" id="share-btn" onclick="shareResults('${d.domain}')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
-          <span id="share-label">Share results</span>
-        </button>
-      </div>
+    <div class="share-row">
+      <p class="share-domain">Results for <strong style="font-family:'JetBrains Mono',monospace">${d.domain}</strong></p>
+      <button class="share-btn" id="share-btn" onclick="shareResults('${d.domain}')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        <span id="share-label">Share results</span>
+      </button>
     </div>
-
     <div class="score-card">
       <div class="score-header">
-        <div>
-          <div class="score-domain">${d.domain}</div>
-          <div class="score-title">AI Readiness Score</div>
-        </div>
-        <div class="score-big">
-          <div><span class="score-number">${d.score}</span><span class="score-denom">/100</span></div>
-          <span class="score-label ${lbl.cls}">${lbl.text}</span>
-        </div>
+        <div><div class="score-domain-label">${d.domain}</div><div class="score-title">AI Readiness Score</div></div>
+        <div class="score-big"><div><span class="score-number">${d.score}</span><span class="score-denom">/100</span></div><span class="score-label ${lbl.cls}">${lbl.text}</span></div>
       </div>
-      <div class="score-bar-wrap">
-        <div class="score-bar-bg"><div class="score-bar-fill" id="score-fill"></div></div>
-        <div class="score-bar-labels"><span>0</span><span>100</span></div>
-      </div>
+      <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" id="score-fill"></div></div><div class="score-bar-labels"><span>0</span><span>100</span></div></div>
       <div class="breakdown-grid">
-        <div class="breakdown-item">
-          <div><div class="breakdown-name">Agent-readable content</div><div class="breakdown-sub">${d.wordCount ? d.wordCount.toLocaleString() + ' words extracted' : 'Could not extract'}</div></div>
-          <div class="breakdown-score ${scoreColor(wcScore, 20)}">${wcScore}/20</div>
-        </div>
-        <div class="breakdown-item">
-          <div><div class="breakdown-name">Server-side rendering</div><div class="breakdown-sub">${d.isSSR ? 'SSR/SSG detected' : 'Client-side only'}</div></div>
-          <div class="breakdown-score ${d.isSSR ? 'score-green' : 'score-red'}">${d.isSSR ? 10 : 0}/10</div>
-        </div>
-        <div class="breakdown-item">
-          <div><div class="breakdown-name">AI agent access</div><div class="breakdown-sub">${allowedBots}/${totalBots} bots allowed by robots.txt</div></div>
-          <div class="breakdown-score ${scoreColor(botScore, 15)}">${botScore}/15</div>
-        </div>
-        <div class="breakdown-item">
-          <div><div class="breakdown-name">llms.txt discovery</div><div class="breakdown-sub">${d.llmsExists ? 'Found at /llms.txt' : 'Not present'}</div></div>
-          <div class="breakdown-score ${d.llmsExists ? 'score-green' : 'score-red'}">${d.llmsExists ? 15 : 0}/15</div>
-        </div>
-        <div class="breakdown-item">
-          <div><div class="breakdown-name">Markdown availability</div><div class="breakdown-sub">${d.markdownAvailable ? 'Available' : 'HTML only'}</div></div>
-          <div class="breakdown-score ${d.markdownAvailable ? 'score-green' : 'score-red'}">${d.markdownAvailable ? 15 : 0}/15</div>
-        </div>
-        <div class="breakdown-item">
-          <div><div class="breakdown-name">Token economics</div><div class="breakdown-sub">${d.tokenCount ? '~' + Math.round(d.tokenCount/1000) + 'K tokens per page' : 'N/A'}</div></div>
-          <div class="breakdown-score ${tokenOk ? 'score-green' : 'score-yellow'}">${tokenOk ? 15 : 7}/15</div>
-        </div>
-        <div class="breakdown-item">
-          <div><div class="breakdown-name">Performance</div><div class="breakdown-sub">${d.responseTime ? d.responseTime + 'ms avg response' : 'N/A'}</div></div>
-          <div class="breakdown-score ${scoreColor(perfScore, 10)}">${perfScore}/10</div>
-        </div>
-        <div class="breakdown-item">
-          <div><div class="breakdown-name">Sitemap</div><div class="breakdown-sub">${d.sitemapExists ? 'sitemap.xml found' : 'Not detected'}</div></div>
-          <div class="breakdown-score ${d.sitemapExists ? 'score-green' : 'score-yellow'}">${d.sitemapExists ? '✓' : '—'}</div>
-        </div>
+        <div class="breakdown-item"><div><div class="breakdown-name">Agent-readable content</div><div class="breakdown-sub">${d.wordCount?d.wordCount.toLocaleString()+' words':'N/A'}</div></div><div class="breakdown-score ${scoreColor(wcScore,20)}">${wcScore}/20</div></div>
+        <div class="breakdown-item"><div><div class="breakdown-name">Server-side rendering</div><div class="breakdown-sub">${d.isSSR?'SSR/SSG detected':'Client-side only'}</div></div><div class="breakdown-score ${d.isSSR?'score-green':'score-red'}">${d.isSSR?10:0}/10</div></div>
+        <div class="breakdown-item"><div><div class="breakdown-name">AI agent access</div><div class="breakdown-sub">${allowedBots}/${totalBots} bots allowed</div></div><div class="breakdown-score ${scoreColor(botScore,15)}">${botScore}/15</div></div>
+        <div class="breakdown-item"><div><div class="breakdown-name">llms.txt discovery</div><div class="breakdown-sub">${d.llmsExists?'Found':'Not present'}</div></div><div class="breakdown-score ${d.llmsExists?'score-green':'score-red'}">${d.llmsExists?15:0}/15</div></div>
+        <div class="breakdown-item"><div><div class="breakdown-name">Markdown availability</div><div class="breakdown-sub">${d.markdownAvailable?'Available':'HTML only'}</div></div><div class="breakdown-score ${d.markdownAvailable?'score-green':'score-red'}">${d.markdownAvailable?15:0}/15</div></div>
+        <div class="breakdown-item"><div><div class="breakdown-name">Token economics</div><div class="breakdown-sub">${d.tokenCount?'~'+Math.round(d.tokenCount/1000)+'K tokens/page':'N/A'}</div></div><div class="breakdown-score ${tokenOk?'score-green':'score-yellow'}">${tokenOk?15:7}/15</div></div>
+        <div class="breakdown-item"><div><div class="breakdown-name">Performance</div><div class="breakdown-sub">${d.responseTime?d.responseTime+'ms':'N/A'}</div></div><div class="breakdown-score ${scoreColor(perfScore,10)}">${perfScore}/10</div></div>
+        <div class="breakdown-item"><div><div class="breakdown-name">Sitemap</div><div class="breakdown-sub">${d.sitemapExists?'sitemap.xml found':'Not detected'}</div></div><div class="breakdown-score ${d.sitemapExists?'score-green':'score-yellow'}">${d.sitemapExists?'✓':'—'}</div></div>
       </div>
     </div>
-
     <div class="section">
       <div class="section-title">Website Technology Check</div>
       <div class="section-desc">Whether AI bots can retrieve and parse your content without executing JavaScript.</div>
       <div class="check-grid">
-        <div class="check-card ${d.wordCount > 500 ? 'pass' : d.wordCount > 200 ? 'warn' : 'fail'}">
-          <div class="check-card-header">
-            <span class="check-card-name">Agent-readable content</span>
-            ${d.wordCount > 500 ? badge(true, 'Substantial') : d.wordCount > 200 ? '<span class="badge badge-warn">Moderate</span>' : badge(false, 'Thin')}
-          </div>
-          <div class="check-value">${d.wordCount ? d.wordCount.toLocaleString() : '—'} words</div>
-          <div class="check-sub">Agents extract content from raw HTML. ${d.wordCount > 500 ? 'Enough for AI to summarize and reason over.' : 'Consider more content in your HTML, not just JS-rendered text.'}</div>
+        <div class="check-card ${d.wordCount>500?'pass':d.wordCount>200?'warn':'fail'}">
+          <div class="check-card-header"><span class="check-card-name">Agent-readable content</span>${d.wordCount>500?badge(true,'Substantial'):d.wordCount>200?'<span class="badge badge-warn">Moderate</span>':badge(false,'Thin')}</div>
+          <div class="check-value">${d.wordCount?d.wordCount.toLocaleString():'—'} words</div>
+          <div class="check-sub">${d.wordCount>500?'Enough for AI to summarize and reason over.':'Consider more content in raw HTML, not only JS-rendered text.'}</div>
         </div>
-        <div class="check-card ${d.isSSR ? 'pass' : 'fail'}">
-          <div class="check-card-header">
-            <span class="check-card-name">Server-side rendered</span>
-            ${badge(d.isSSR, 'SSR/SSG', 'CSR only')}
-          </div>
-          <div class="check-value">${d.isSSR ? 'Yes — SSR' : 'No — CSR'}</div>
-          <div class="check-sub">${d.isSSR ? 'All good. AI bots can ingest your content without JavaScript.' : 'Critical issue. Most AI bots cannot execute JS, so your content is invisible to them.'}</div>
+        <div class="check-card ${d.isSSR?'pass':'fail'}">
+          <div class="check-card-header"><span class="check-card-name">Server-side rendered</span>${badge(d.isSSR,'SSR/SSG','CSR only')}</div>
+          <div class="check-value">${d.isSSR?'Yes — SSR':'No — CSR'}</div>
+          <div class="check-sub">${d.isSSR?'AI bots can ingest your content without JavaScript.':'Most AI bots cannot execute JS — your content may be invisible.'}</div>
         </div>
-        <div class="check-card ${d.responseTime && d.responseTime < 600 ? 'pass' : d.responseTime && d.responseTime < 1200 ? 'warn' : 'fail'}">
-          <div class="check-card-header">
-            <span class="check-card-name">Performance</span>
-            ${d.responseTime
-              ? (d.responseTime < 600 ? badge(true, 'Fast') : d.responseTime < 1200 ? '<span class="badge badge-warn">Moderate</span>' : badge(false, 'Slow'))
-              : '<span class="badge badge-warn">Unknown</span>'}
-          </div>
-          <div class="check-value">${d.responseTime ? d.responseTime + ' ms' : 'N/A'}</div>
-          <div class="check-sub">AI agents have short timeouts. Target under 600ms. ${d.responseTime > 1200 ? 'Your site is too slow for reliable agent access.' : ''}</div>
+        <div class="check-card ${d.responseTime&&d.responseTime<600?'pass':d.responseTime&&d.responseTime<1200?'warn':'fail'}">
+          <div class="check-card-header"><span class="check-card-name">Performance</span>${d.responseTime?(d.responseTime<600?badge(true,'Fast'):d.responseTime<1200?'<span class="badge badge-warn">Moderate</span>':badge(false,'Slow')):'<span class="badge badge-warn">Unknown</span>'}</div>
+          <div class="check-value">${d.responseTime?d.responseTime+' ms':'N/A'}</div>
+          <div class="check-sub">Target under 600ms. AI agents have short timeouts.</div>
         </div>
-        <div class="check-card ${d.sitemapExists ? 'pass' : 'warn'}">
-          <div class="check-card-header">
-            <span class="check-card-name">Sitemap</span>
-            ${badge(d.sitemapExists, 'Found', 'Not found')}
-          </div>
-          <div class="check-value">${d.sitemapExists ? '✓ Present' : '✗ Missing'}</div>
-          <div class="check-sub">${d.sitemapExists ? 'Sitemap.xml helps agents and crawlers discover all your pages.' : 'Add sitemap.xml so agents can discover your full content.'}</div>
+        <div class="check-card ${d.sitemapExists?'pass':'warn'}">
+          <div class="check-card-header"><span class="check-card-name">Sitemap</span>${badge(d.sitemapExists,'Found','Not found')}</div>
+          <div class="check-value">${d.sitemapExists?'✓ Present':'✗ Missing'}</div>
+          <div class="check-sub">${d.sitemapExists?'Agents can discover all your pages.':'Add sitemap.xml to help agents find your content.'}</div>
         </div>
       </div>
     </div>
-
     <div class="section">
-      <div class="section-title">Agent Discovery & Readability</div>
-      <div class="section-desc">How easily AI agents can find a structured index of your content and read it as clean Markdown.</div>
+      <div class="section-title">Agent Discovery &amp; Readability</div>
+      <div class="section-desc">How easily AI agents can find and read your content efficiently.</div>
       <div class="check-grid">
-        <div class="check-card ${d.llmsExists ? 'pass' : 'fail'}">
-          <div class="check-card-header">
-            <span class="check-card-name">llms.txt index</span>
-            ${badge(d.llmsExists, 'Found', 'Not found')}
-          </div>
-          <div class="check-value">${d.llmsExists ? '✓ Present' : '✗ Missing'}</div>
-          <div class="check-sub">${d.llmsExists ? 'AI agents can discover a structured index of your content.' : 'Publish /llms.txt so agents can find all your content efficiently.'}</div>
+        <div class="check-card ${d.llmsExists?'pass':'fail'}">
+          <div class="check-card-header"><span class="check-card-name">llms.txt index</span>${badge(d.llmsExists,'Found','Not found')}</div>
+          <div class="check-value">${d.llmsExists?'✓ Present':'✗ Missing'}</div>
+          <div class="check-sub">${d.llmsExists?'AI agents can discover a structured index of your content.':'Publish /llms.txt so agents can find all your content efficiently.'}</div>
         </div>
-        <div class="check-card ${d.markdownAvailable ? 'pass' : 'fail'}">
-          <div class="check-card-header">
-            <span class="check-card-name">Markdown for agents</span>
-            ${badge(d.markdownAvailable, 'Available', 'HTML only')}
-          </div>
-          <div class="check-value">${d.markdownAvailable ? '✓ Available' : '✗ HTML only'}</div>
-          <div class="check-sub">${d.markdownAvailable ? 'Agents can consume clean Markdown, fitting more content per request.' : 'Agents must consume token-heavy HTML. Serve raw Markdown to fit more content per request.'}</div>
+        <div class="check-card ${d.markdownAvailable?'pass':'fail'}">
+          <div class="check-card-header"><span class="check-card-name">Markdown for agents</span>${badge(d.markdownAvailable,'Available','HTML only')}</div>
+          <div class="check-value">${d.markdownAvailable?'✓ Available':'✗ HTML only'}</div>
+          <div class="check-sub">${d.markdownAvailable?'Agents can consume clean Markdown.':'Agents must consume token-heavy HTML.'}</div>
         </div>
-        <div class="check-card" style="border-color:var(--gray-2)">
-          <div class="check-card-header">
-            <span class="check-card-name">Token economics</span>
-            <span class="badge ${tokenOk ? 'badge-pass' : 'badge-warn'}">${tokenOk ? 'Efficient' : 'Heavy'}</span>
-          </div>
-          <div class="check-value">${d.tokenCount ? '~' + Math.round(d.tokenCount / 1000) + 'K tokens' : 'N/A'}</div>
-          <div class="check-sub">Pages over 50K tokens get truncated or skipped. ${tokenOk ? 'Your page fits comfortably.' : 'Consider reducing HTML overhead.'}</div>
+        <div class="check-card">
+          <div class="check-card-header"><span class="check-card-name">Token economics</span><span class="badge ${tokenOk?'badge-pass':'badge-warn'}">${tokenOk?'Efficient':'Heavy'}</span></div>
+          <div class="check-value">${d.tokenCount?'~'+Math.round(d.tokenCount/1000)+'K tokens':'N/A'}</div>
+          <div class="check-sub">Pages over 50K tokens get truncated. ${tokenOk?'Your page fits comfortably.':'Consider reducing HTML overhead.'}</div>
         </div>
-        <div class="check-card ${allowedBots === totalBots ? 'pass' : allowedBots > 0 ? 'warn' : 'fail'}">
-          <div class="check-card-header">
-            <span class="check-card-name">AI agent access</span>
-            <span class="badge ${allowedBots === totalBots ? 'badge-pass' : allowedBots > 0 ? 'badge-warn' : 'badge-fail'}">${allowedBots}/${totalBots} allowed</span>
-          </div>
+        <div class="check-card ${allowedBots===totalBots?'pass':allowedBots>0?'warn':'fail'}">
+          <div class="check-card-header"><span class="check-card-name">AI agent access</span><span class="badge ${allowedBots===totalBots?'badge-pass':allowedBots>0?'badge-warn':'badge-fail'}">${allowedBots}/${totalBots} allowed</span></div>
           <div class="check-value">${allowedBots}/${totalBots}</div>
-          <div class="check-sub">Bots allowed by your robots.txt. ${allowedBots < totalBots ? 'Some AI crawlers may be blocked.' : 'All major AI bots have access.'}</div>
+          <div class="check-sub">${allowedBots<totalBots?'Some AI crawlers may be blocked by robots.txt.':'All major AI bots have access.'}</div>
         </div>
       </div>
     </div>
-
-    ${d.bots && d.bots.length ? `
+    ${d.bots&&d.bots.length?`
     <div class="section">
       <div class="section-title">AI Agent Access</div>
-      <div class="section-desc">Which AI agents and crawlers from major platforms can access your website based on robots.txt rules.</div>
-      <div class="bot-grid">
-        ${d.bots.map(bot => `
-          <div class="bot-card">
-            <div class="bot-name">${bot.name}</div>
-            <div class="bot-row"><span class="bot-row-label">Robots.txt allowed?</span>${icon(bot.robotsAllowed)}</div>
-            <div class="bot-row"><span class="bot-row-label">Access status</span>${bot.simulatedAccess ? icon(true) : icon(false)}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-    ` : ''}
-
-    ${fixes.length ? `
+      <div class="section-desc">Which AI agents can access your website based on robots.txt.</div>
+      <div class="bot-grid">${d.bots.map(bot=>`<div class="bot-card"><div class="bot-name">${bot.name}</div><div class="bot-row"><span class="bot-row-label">Robots.txt allowed?</span>${icon(bot.robotsAllowed)}</div><div class="bot-row"><span class="bot-row-label">Access status</span>${icon(bot.simulatedAccess)}</div></div>`).join('')}</div>
+    </div>`:''}
+    ${fixes.length?`
     <div class="section">
       <div class="section-title">Top Fixes</div>
       <div class="section-desc">What to do first to improve your AI visibility score.</div>
-      <div class="fix-list">
-        ${fixes.map((f, i) => `
-          <div class="fix-item">
-            <div class="fix-num">${i + 1}</div>
-            <div class="fix-content"><h4>${f.title}</h4><p>${f.desc}</p></div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-    ` : ''}
-
+      <div class="fix-list">${fixes.map((f,i)=>`<div class="fix-item"><div class="fix-num">${i+1}</div><div class="fix-content"><h4>${f.title}</h4><p>${f.desc}</p></div></div>`).join('')}</div>
+    </div>`:''}
     <div class="cta-block">
       <h2>Track your AI visibility over time</h2>
       <p>See how ChatGPT, Perplexity and Gemini mention your brand. Monitor competitors. Get a clear action plan to show up more and win more buyers.</p>
       <div class="cta-buttons">
         <a href="https://my.signum.ai/dashboard" class="btn-cta-primary">Try it free →</a>
-        <a href="https://signum.ai/book-demo" class="btn-cta-ghost">Book a demo</a>
+        <a href="https://signum.ai/contact-us/" class="btn-cta-ghost">Book a demo</a>
       </div>
     </div>
   `;
@@ -648,13 +431,8 @@ function renderResults(d, domain) {
   const el = document.getElementById('results');
   el.innerHTML = html;
   el.style.display = 'block';
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  // animate score bar
-  setTimeout(() => {
-    const fill = document.getElementById('score-fill');
-    if (fill) fill.style.width = d.score + '%';
-  }, 200);
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(() => { const fill=document.getElementById('score-fill'); if(fill) fill.style.width=d.score+'%'; }, 200);
 }
 </script>
 </body>
